@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90630991E26EDF8006A9FF8 /* SamplingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */; };
 		A9DBEAA91E248A8500AE6EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBEAA81E248A8500AE6EE4 /* AppDelegate.swift */; };
 		A9DBEAAB1E248A8500AE6EE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBEAAA1E248A8500AE6EE4 /* ViewController.swift */; };
 		A9DBEAAE1E248A8500AE6EE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9DBEAAC1E248A8500AE6EE4 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SamplingViewController.swift; sourceTree = "<group>"; };
 		A9DBEAA51E248A8500AE6EE4 /* SampleTapLoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTapLoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DBEAA81E248A8500AE6EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9DBEAAA1E248A8500AE6EE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 		A9DBEAC71E248A8600AE6EE4 /* SampleTapLoopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleTapLoopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DBEACB1E248A8600AE6EE4 /* SampleTapLoopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTapLoopUITests.swift; sourceTree = "<group>"; };
 		A9DBEACD1E248A8600AE6EE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9FC96F51E287454007948CC /* SampleTapLoop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleTapLoop.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,7 @@
 				A9DBEABF1E248A8600AE6EE4 /* SampleTapLoopTests */,
 				A9DBEACA1E248A8600AE6EE4 /* SampleTapLoopUITests */,
 				A9DBEAA61E248A8500AE6EE4 /* Products */,
+				A9FC96F61E287454007948CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,8 +103,10 @@
 		A9DBEAA71E248A8500AE6EE4 /* SampleTapLoop */ = {
 			isa = PBXGroup;
 			children = (
+				A9FC96F51E287454007948CC /* SampleTapLoop.entitlements */,
 				A9DBEAA81E248A8500AE6EE4 /* AppDelegate.swift */,
 				A9DBEAAA1E248A8500AE6EE4 /* ViewController.swift */,
+				A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */,
 				A9DBEAAC1E248A8500AE6EE4 /* Main.storyboard */,
 				A9DBEAB21E248A8500AE6EE4 /* Assets.xcassets */,
 				A9DBEAB41E248A8500AE6EE4 /* LaunchScreen.storyboard */,
@@ -126,6 +132,13 @@
 				A9DBEACD1E248A8600AE6EE4 /* Info.plist */,
 			);
 			path = SampleTapLoopUITests;
+			sourceTree = "<group>";
+		};
+		A9FC96F61E287454007948CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +211,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3KPPVYM38R;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
 					};
 					A9DBEABB1E248A8600AE6EE4 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -266,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9DBEAAB1E248A8500AE6EE4 /* ViewController.swift in Sources */,
+				A90630991E26EDF8006A9FF8 /* SamplingViewController.swift in Sources */,
 				A9DBEAA91E248A8500AE6EE4 /* AppDelegate.swift in Sources */,
 				A9DBEAB11E248A8500AE6EE4 /* SampleTapLoop.xcdatamodeld in Sources */,
 			);
@@ -518,6 +537,7 @@
 				A9DBEAD21E248A8600AE6EE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9DBEAD31E248A8600AE6EE4 /* Build configuration list for PBXNativeTarget "SampleTapLoopTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +546,7 @@
 				A9DBEAD51E248A8600AE6EE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9DBEAD61E248A8600AE6EE4 /* Build configuration list for PBXNativeTarget "SampleTapLoopUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +555,7 @@
 				A9DBEAD81E248A8600AE6EE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
