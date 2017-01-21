@@ -371,7 +371,7 @@ class ViewController: UIViewController {
     
     @IBAction func sliderChanged(_ sender: Any) {
         intervalVal = Double((1-sliderSpeed.value)*0.2)
-        if timerPlaying != nil {
+        if timerPlaying != nil && !btnPlay.isEnabled {
             timerPlaying.invalidate()
             play(interval: intervalVal)
         }
