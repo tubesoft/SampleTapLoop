@@ -25,65 +25,105 @@ class ViewController: UIViewController {
     @IBOutlet weak var sliderSpeed: UISlider!
     @IBOutlet weak var lblSliderVal: UILabel!
     
-    let blue:UIImage = UIImage(named:"colorCirclesBlue")!
-    let green:UIImage = UIImage(named:"colorCirclesGreen")!
-    let orange:UIImage = UIImage(named:"colorCirclesOrange")!
-    let pink:UIImage = UIImage(named:"colorCirclesPink")!
-    let purple:UIImage = UIImage(named:"colorCirclesPurple")!
-    let blueDark:UIImage = UIImage(named:"colorCirclesBlueDark")!
-    let greenDark:UIImage = UIImage(named:"colorCirclesGreenDark")!
-    let orangeDark:UIImage = UIImage(named:"colorCirclesOrangeDark")!
-    let pinkDark:UIImage = UIImage(named:"colorCirclesPinkDark")!
-    let purpleDark:UIImage = UIImage(named:"colorCirclesPurpleDark")!
-    var audioPlayer: AVAudioPlayer!
-    var audioPlayerBlue: AVAudioPlayer!
-    var audioPlayerGreen: AVAudioPlayer!
-    var audioPlayerOrange: AVAudioPlayer!
-    var audioPlayerPink: AVAudioPlayer!
-    var audioPlayerPurple: AVAudioPlayer!
     let fileManager = FileManager()
     var fileName: String = ""
-    var filePath: NSURL?
+    
+    let engine = AVAudioEngine()
+    var playerNodeBlue = AVAudioPlayerNode()
+    var playerNodeGreen = AVAudioPlayerNode()
+    var playerNodeOrange = AVAudioPlayerNode()
+    var playerNodePink = AVAudioPlayerNode()
+    var playerNodePurple = AVAudioPlayerNode()
+    var audioFileBlue: AVAudioFile!
+    var audioFileGreen: AVAudioFile!
+    var audioFileOrange: AVAudioFile!
+    var audioFilePink: AVAudioFile!
+    var audioFilePurple: AVAudioFile!
     
     var timerRecording: Timer!
     var cntRecording: Int = 0
     var timerPlaying: Timer!
-    var cntPlaying: Int = 0
+    var cntPlaying: Int = 1
     var isRecording: Bool = false
     var arraySoundTiming: NSMutableArray = NSMutableArray(array: [])
+    var tappedPadsAtTime: [Int] = [0,0,0,0,0,0]
     
-    var cntLoop: Int = 0
+    var intervalVal: Double = 0.02
     
-    var intervalVal: Double = 0.1
-    
-    var paths: [NSURL] = []
+    var paths: [URL] = []
+    var pathPunch: URL!
     let colors: [String] = ["Blue", "Green", "Orange", "Pink", "Purple"]
+    var audioExists: [Bool] = [false, false, false, false, false]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask) as [URL]
+        let dirURL = urls[0]
         for color in colors {
             let name = color + ".caf"
-            let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask) as [URL]
-            let dirURL = urls[0]
-            paths.append(dirURL.appendingPathComponent(name) as NSURL)
+            paths.append(dirURL.appendingPathComponent(name) as URL)
         }
+        pathPunch = dirURL.appendingPathComponent("punchSheet.dat") as URL
+        
+        if  fileManager.fileExists(atPath: pathPunch.path){
+            arraySoundTiming = NSKeyedUnarchiver.unarchiveObject(withFile: pathPunch.path) as! NSMutableArray
+        }
+        
+        audioExists[0] = fileManager.fileExists(atPath: paths[0].path)
+        audioExists[1] = fileManager.fileExists(atPath: paths[1].path)
+        audioExists[2] = fileManager.fileExists(atPath: paths[2].path)
+        audioExists[3] = fileManager.fileExists(atPath: paths[3].path)
+        audioExists[4] = fileManager.fileExists(atPath: paths[4].path)
+        
         do{
-            audioPlayerBlue = try AVAudioPlayer(contentsOf: paths[0] as URL)
-            audioPlayerGreen = try AVAudioPlayer(contentsOf: paths[1] as URL)
-            audioPlayerOrange = try AVAudioPlayer(contentsOf: paths[2] as URL)
-            audioPlayerPink = try AVAudioPlayer(contentsOf: paths[3] as URL)
-            audioPlayerPurple = try AVAudioPlayer(contentsOf: paths[4] as URL)
+            if audioExists[0] {
+                audioFileBlue = try AVAudioFile(forReading: paths[0])
+                engine.attach(playerNodeBlue)
+                engine.connect(playerNodeBlue, to: engine.mainMixerNode, format: audioFileBlue.processingFormat)
+            }
+            if audioExists[1] {
+                audioFileGreen = try AVAudioFile(forReading: paths[1])
+                engine.attach(playerNodeGreen)
+                engine.connect(playerNodeGreen, to: engine.mainMixerNode, format: audioFileGreen.processingFormat)
+            }
+            if audioExists[2] {
+                audioFileOrange = try AVAudioFile(forReading: paths[2])
+                engine.attach(playerNodeOrange)
+                engine.connect(playerNodeOrange, to: engine.mainMixerNode, format: audioFileOrange.processingFormat)
+            }
+            if audioExists[3] {
+                audioFilePink = try AVAudioFile(forReading: paths[3])
+                engine.attach(playerNodePink)
+                engine.connect(playerNodePink, to: engine.mainMixerNode, format: audioFilePink.processingFormat)
+            }
+            if audioExists[4] {
+                audioFilePurple = try AVAudioFile(forReading: paths[4])
+                engine.attach(playerNodePurple)
+                engine.connect(playerNodePurple, to: engine.mainMixerNode, format: audioFilePurple.processingFormat)
+            }
+        } catch let error {
+            print("AVAudioFile error", error)
         }
-        catch let error {
-            print("AVAudioPlayer error:", error)
+        if audioExists[0] || audioExists[1] ||
+            audioExists[2] || audioExists[3] ||
+            audioExists[4] {
+                do {
+                    // エンジンを開始
+                    try engine.start()
+                } catch let error {
+                    print("engine.start() error:", error)
+                }
         }
         
         btnStopRecording.isEnabled = false
         switchSampling.isOn = false
         switchRecording.isOn = false
         btnStop.isEnabled = false
+        if !fileManager.fileExists(atPath: pathPunch.path) {
+            btnPlay.isEnabled = false
+        } else {
+            cntRecording = arraySoundTiming.count - 1
+        }
     }
     
     @IBAction func valueChengedSwitchSampling(_ sender: Any) {
@@ -113,15 +153,18 @@ class ViewController: UIViewController {
         switchRecording.isOn = false
         switchSampling.isEnabled = true
         btnStopRecording.isEnabled = false
-        
         isRecording = false
+        let success = NSKeyedArchiver.archiveRootObject(arraySoundTiming, toFile: pathPunch.path)
+        if success {
+            print("Punch Sheet has been saved.")
+        }
     }
     
-    func startRacordingTimer() {
+    func startRecordingTimer() {
         arraySoundTiming = NSMutableArray(array: [])
         //タイマーオン
         timerRecording = Timer.scheduledTimer(
-            timeInterval: 0.1,
+            timeInterval: 0.02,
             target: self,
             selector: #selector(self.updateRecording),
             userInfo: nil,
@@ -134,11 +177,12 @@ class ViewController: UIViewController {
         btnStopRecording.isEnabled = true
         
         cntRecording = 0
+        tappedPadsAtTime = [0,0,0,0,0,cntRecording]
         timerRecording.fire()
     }
     
     func updateRecording(t: Timer) {
-        if cntRecording >= 1000 { //10秒経ったら強制終了
+        if cntRecording >= 5000 { //10秒経ったら強制終了
             timerRecording.invalidate()
             btnPlay.isEnabled = true
             btnStop.isEnabled = true
@@ -146,7 +190,9 @@ class ViewController: UIViewController {
             switchSampling.isEnabled = true
             btnStopRecording.isEnabled = false
         }
+        arraySoundTiming.add(tappedPadsAtTime)
         cntRecording = cntRecording + 1
+        tappedPadsAtTime = [0,0,0,0,0,cntRecording]
         lblTime.text = NSString(format: "%d", cntRecording) as String
     }
 
@@ -156,8 +202,7 @@ class ViewController: UIViewController {
         btnStop.isEnabled = false
         switchRecording.isEnabled = true
         switchSampling.isEnabled = true
-        cntLoop = 0
-        cntPlaying = 0
+        cntPlaying = 1
     }
     
     @IBAction func startPlaying(_ sender: Any) {
@@ -178,189 +223,186 @@ class ViewController: UIViewController {
         switchRecording.isEnabled = false
         switchSampling.isEnabled = false
         
-        //        cntPlaying = 0
-        //        cntLoop = 0
         timerPlaying.fire()
     }
     
     func updatePlaying(t: Timer) {
-        if arraySoundTiming.count != 0 {
-            let token: [Int] = arraySoundTiming.object(at: cntLoop) as! [Int]
-            let timing: Int = token[1]
-            let colorNum: Int = token[0]
-            
-            if cntPlaying == timing {
-                switch colorNum {
-                case 0:
-                    do{
-                        audioPlayerBlue = try AVAudioPlayer(contentsOf: paths[0] as URL)
-                        audioPlayerBlue.play()
-                    }
-                    catch let error {
-                        print("AVAudioPlayer error:", error)
-                    }
-                case 1:
-                    do{
-                        audioPlayerGreen = try AVAudioPlayer(contentsOf: paths[1] as URL)
-                        audioPlayerGreen.play()
-                    }
-                    catch let error {
-                        print("AVAudioPlayer error:", error)
-                    }
-                case 2:
-                    do{
-                        audioPlayerOrange = try AVAudioPlayer(contentsOf: paths[2] as URL)
-                        audioPlayerOrange.play()
-                    }
-                    catch let error {
-                        print("AVAudioPlayer error:", error)
-                    }
-                    
-                case 3:
-                    do{
-                        audioPlayerPink = try AVAudioPlayer(contentsOf: paths[3] as URL)
-                        audioPlayerPink.play()
-                    }
-                    catch let error {
-                        print("AVAudioPlayer error:", error)
-                    }
-                case 4:
-                    do{
-                        audioPlayerPurple = try AVAudioPlayer(contentsOf: paths[4] as URL)
-                        audioPlayerPurple.play()
-                    }
-                    catch let error {
-                        print("AVAudioPlayer error:", error)
-                    }
-                default: break
-                }
-                if cntLoop < arraySoundTiming.count - 1 {
-                    cntLoop = cntLoop + 1
-                }
+        let everytime: [Int] = arraySoundTiming.object(at: cntPlaying) as! [Int]
+        if everytime[0] == 1 {
+            if playerNodeBlue.isPlaying {
+                playerNodeBlue.stop()
+                playerNodeBlue.scheduleFile(audioFileBlue, at: nil, completionHandler: nil)
+                playerNodeBlue.play()
+            } else {
+                playerNodeBlue.scheduleFile(audioFileBlue, at: nil, completionHandler: nil)
+                playerNodeBlue.play()
             }
-            if cntPlaying >= cntRecording {
-                cntPlaying = 0
-                cntLoop = 0
+        }
+        if everytime[1] == 1 {
+            if playerNodeGreen.isPlaying {
+                playerNodeGreen.stop()
+                playerNodeGreen.scheduleFile(audioFileGreen, at: nil, completionHandler: nil)
+                playerNodeGreen.play()
+            } else {
+                playerNodeGreen.scheduleFile(audioFileGreen, at: nil, completionHandler: nil)
+                playerNodeGreen.play()
             }
-            cntPlaying = cntPlaying + 1
+        }
+        if everytime[2] == 1 {
+            if playerNodeOrange.isPlaying {
+                playerNodeOrange.stop()
+                playerNodeOrange.scheduleFile(audioFileOrange, at: nil, completionHandler: nil)
+                playerNodeOrange.play()
+            } else {
+                playerNodeOrange.scheduleFile(audioFileOrange, at: nil, completionHandler: nil)
+                playerNodeOrange.play()
+            }
+
+        }
+        if everytime[3] == 1 {
+            if playerNodePink.isPlaying {
+                playerNodePink.stop()
+                playerNodePink.scheduleFile(audioFilePink, at: nil, completionHandler: nil)
+                playerNodePink.play()
+            } else {
+                playerNodePink.scheduleFile(audioFilePink, at: nil, completionHandler: nil)
+                playerNodePink.play()
+            }
+        }
+        if everytime[4] == 1 {
+            if playerNodePurple.isPlaying {
+                playerNodePurple.stop()
+                playerNodePurple.scheduleFile(audioFilePurple, at: nil, completionHandler: nil)
+                playerNodePurple.play()
+            } else {
+                playerNodePurple.scheduleFile(audioFilePurple, at: nil, completionHandler: nil)
+                playerNodePurple.play()
+            }
+        }
+        
+        cntPlaying = cntPlaying + 1
+        if cntPlaying >= cntRecording {
+            cntPlaying = 1
         }
         lblTime.text = NSString(format: "%d", cntPlaying) as String
     }
     
     func moveToSampling(colorStr: String) {
+        engine.stop()
         let targetViewController:SamplingViewController = self.storyboard!.instantiateViewController( withIdentifier: "sampling" ) as! SamplingViewController
         targetViewController.valueAccessor = colorStr
         
-        self.present( targetViewController, animated: true, completion: nil)
+        self.present(targetViewController, animated: true, completion: nil)
     }
     
     @IBAction func touchDownBlue(_ sender: Any) {
         if switchSampling.isOn {
             moveToSampling(colorStr: colors[0])
-        } else {
+        } else if engine.isRunning && audioExists[0] {
             if switchRecording.isOn {
                 if !isRecording {
-                    startRacordingTimer()
+                    startRecordingTimer()
                     isRecording = true
                 }
-                let token: [Int] = [0, cntRecording]
-                arraySoundTiming.add(token)
+                tappedPadsAtTime[0] = 1
             }
             
-            do{
-                audioPlayerBlue = try AVAudioPlayer(contentsOf: paths[0] as URL)
-                audioPlayerBlue.play()
+            if playerNodeBlue.isPlaying {
+                playerNodeBlue.stop()
+                playerNodeBlue.scheduleFile(audioFileBlue, at: nil, completionHandler: nil)
+                playerNodeBlue.play()
+            } else {
+                playerNodeBlue.scheduleFile(audioFileBlue, at: nil, completionHandler: nil)
+                playerNodeBlue.play()
             }
-            catch let error {
-                print("AVAudioPlayer error:", error)
-            }
+            
         }
     }
     @IBAction func touchDownGreen(_ sender: Any) {
         if switchSampling.isOn {
             moveToSampling(colorStr: colors[1])
-        } else {
+        } else if engine.isRunning && audioExists[1] {
             if switchRecording.isOn {
                 if !isRecording {
-                    startRacordingTimer()
+                    startRecordingTimer()
                     isRecording = true
                 }
-                let token: [Int] = [1, cntRecording]
-                arraySoundTiming.add(token)
+                tappedPadsAtTime[1] = 1
             }
-
-            do{
-                audioPlayerGreen = try AVAudioPlayer(contentsOf: paths[1] as URL)
-                audioPlayerGreen.play()
-            }
-            catch let error {
-                print("AVAudioPlayer error:", error)
+ 
+            if playerNodeGreen.isPlaying {
+                playerNodeGreen.stop()
+                playerNodeGreen.scheduleFile(audioFileGreen, at: nil, completionHandler: nil)
+                playerNodeGreen.play()
+            } else {
+                playerNodeGreen.scheduleFile(audioFileGreen, at: nil, completionHandler: nil)
+                playerNodeGreen.play()
             }
         }
     }
     @IBAction func touchDownOrange(_ sender: Any) {
         if switchSampling.isOn {
             moveToSampling(colorStr: colors[2])
-        } else {
+        } else if engine.isRunning && audioExists[2] {
             if switchRecording.isOn {
                 if !isRecording {
-                    startRacordingTimer()
+                    startRecordingTimer()
                     isRecording = true
                 }
-                let token: [Int] = [2, cntRecording]
-                arraySoundTiming.add(token)
+                tappedPadsAtTime[2] = 1
             }
 
-            do{
-                audioPlayerOrange = try AVAudioPlayer(contentsOf: paths[2] as URL)
-                audioPlayerOrange.play()
-            }
-            catch let error {
-                print("AVAudioPlayer error:", error)
+            if playerNodeOrange.isPlaying {
+                playerNodeOrange.stop()
+                playerNodeOrange.scheduleFile(audioFileOrange, at: nil, completionHandler: nil)
+                playerNodeOrange.play()
+            } else {
+                playerNodeOrange.scheduleFile(audioFileOrange, at: nil, completionHandler: nil)
+                playerNodeOrange.play()
             }
         }
     }
     @IBAction func touchDownPink(_ sender: Any) {
         if switchSampling.isOn {
             moveToSampling(colorStr: colors[3])
-        } else {
+        } else if engine.isRunning && audioExists[3] {
             if switchRecording.isOn {
                 if !isRecording {
-                    startRacordingTimer()
+                    startRecordingTimer()
                     isRecording = true
                 }
-                let token: [Int] = [3, cntRecording]
-                arraySoundTiming.add(token)
+                tappedPadsAtTime[3] = 1
             }
 
-            do{
-                audioPlayerPink = try AVAudioPlayer(contentsOf: paths[3] as URL)
-                audioPlayerPink.play()
-            }
-            catch let error {
-                print("AVAudioPlayer error:", error)
+            if playerNodePink.isPlaying {
+                playerNodePink.stop()
+                playerNodePink.scheduleFile(audioFilePink, at: nil, completionHandler: nil)
+                playerNodePink.play()
+            } else {
+                playerNodePink.scheduleFile(audioFilePink, at: nil, completionHandler: nil)
+                playerNodePink.play()
             }
         }
     }
     @IBAction func touchDownPurple(_ sender: Any) {
         if switchSampling.isOn {
             moveToSampling(colorStr: colors[4])
-        } else {
+        } else if engine.isRunning && audioExists[4] {
             if switchRecording.isOn {
                 if !isRecording {
-                    startRacordingTimer()
+                    startRecordingTimer()
                     isRecording = true
                 }
-                let token: [Int] = [4, cntRecording]
-                arraySoundTiming.add(token)
+                tappedPadsAtTime[4] = 1
             }
 
-            do{
-                audioPlayerPurple = try AVAudioPlayer(contentsOf: paths[4] as URL)
-                audioPlayerPurple.play()
-            }
-            catch let error {
-                print("AVAudioPlayer error:", error)
+            if playerNodePurple.isPlaying {
+                playerNodePurple.stop()
+                playerNodePurple.scheduleFile(audioFilePurple, at: nil, completionHandler: nil)
+                playerNodePurple.play()
+            } else {
+                playerNodePurple.scheduleFile(audioFilePurple, at: nil, completionHandler: nil)
+                playerNodePurple.play()
             }
         }
     }
@@ -370,7 +412,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sliderChanged(_ sender: Any) {
-        intervalVal = Double((1-sliderSpeed.value)*0.2)
+        intervalVal = Double((1-sliderSpeed.value)*0.04)
         if timerPlaying != nil && !btnPlay.isEnabled {
             timerPlaying.invalidate()
             play(interval: intervalVal)

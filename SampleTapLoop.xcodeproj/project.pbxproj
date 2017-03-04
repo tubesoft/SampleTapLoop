@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A90630991E26EDF8006A9FF8 /* SamplingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */; };
+		A991AA731E6A2F2600E427B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A991AA751E6A2F2600E427B0 /* Localizable.strings */; };
 		A9DBEAA91E248A8500AE6EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBEAA81E248A8500AE6EE4 /* AppDelegate.swift */; };
 		A9DBEAAB1E248A8500AE6EE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBEAAA1E248A8500AE6EE4 /* ViewController.swift */; };
 		A9DBEAAE1E248A8500AE6EE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9DBEAAC1E248A8500AE6EE4 /* Main.storyboard */; };
@@ -37,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SamplingViewController.swift; sourceTree = "<group>"; };
+		A991AA741E6A2F2600E427B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A991AA771E6A336500E427B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A991AA781E6A336500E427B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A991AA7A1E6B3FF700E427B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		A9DBEAA51E248A8500AE6EE4 /* SampleTapLoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTapLoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DBEAA81E248A8500AE6EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9DBEAAA1E248A8500AE6EE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 				A9DBEAB21E248A8500AE6EE4 /* Assets.xcassets */,
 				A9DBEAB41E248A8500AE6EE4 /* LaunchScreen.storyboard */,
 				A9DBEAB71E248A8500AE6EE4 /* Info.plist */,
+				A991AA751E6A2F2600E427B0 /* Localizable.strings */,
 				A9DBEAAF1E248A8500AE6EE4 /* SampleTapLoop.xcdatamodeld */,
 			);
 			path = SampleTapLoop;
@@ -238,6 +244,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = A9DBEA9C1E248A8500AE6EE4;
 			productRefGroup = A9DBEAA61E248A8500AE6EE4 /* Products */;
@@ -257,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9DBEAB61E248A8500AE6EE4 /* LaunchScreen.storyboard in Resources */,
+				A991AA731E6A2F2600E427B0 /* Localizable.strings in Resources */,
 				A9DBEAB31E248A8500AE6EE4 /* Assets.xcassets in Resources */,
 				A9DBEAAE1E248A8500AE6EE4 /* Main.storyboard in Resources */,
 			);
@@ -322,10 +330,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A991AA751E6A2F2600E427B0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A991AA741E6A2F2600E427B0 /* Base */,
+				A991AA781E6A336500E427B0 /* ja */,
+			);
+			name = Localizable.strings;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		A9DBEAAC1E248A8500AE6EE4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A9DBEAAD1E248A8500AE6EE4 /* Base */,
+				A991AA7A1E6B3FF700E427B0 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -334,6 +353,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A9DBEAB51E248A8500AE6EE4 /* Base */,
+				A991AA771E6A336500E427B0 /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -345,6 +365,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -395,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -444,6 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tubesoft.SampleTapLoop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -457,6 +480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tubesoft.SampleTapLoop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

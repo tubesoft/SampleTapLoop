@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  SampleTapLoop
+
+  Created by Takatomo INOUE on 2017/03/03.
+  Copyright © 2017年 Takatomo INOUE. All rights reserved.
+*/
+
+"Blue" = "青";
+"Green" = "緑";
+"Orange" = "橙";
+"Pink" = "桃";
+"Purple" = "紫";
+"NowRecording" = "録音中";
+"NowReady" = "録音できます。（1秒以内）";

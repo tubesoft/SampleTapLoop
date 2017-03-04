@@ -1,0 +1,64 @@
+
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "dhu-1g-ZjT"; */
+"dhu-1g-ZjT.normalTitle" = "キャンセル";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "3Wy-SV-jkp"; */
+"3Wy-SV-jkp.text" = "0";
+
+/* Class = "UILabel"; text = "Slower"; ObjectID = "4a7-iB-zAE"; */
+"4a7-iB-zAE.text" = "遅く";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "6EK-nD-kd0"; */
+"6EK-nD-kd0.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BSq-JM-9Cv"; */
+"BSq-JM-9Cv.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Rec"; ObjectID = "Bpp-Pc-ndR"; */
+"Bpp-Pc-ndR.normalTitle" = "録音";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "CMI-aU-Chm"; */
+"CMI-aU-Chm.text" = "100";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "SYC-sM-Umq"; */
+"SYC-sM-Umq.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Recording is ready. (Within 1 min)"; ObjectID = "VwM-W4-DbS"; */
+"VwM-W4-DbS.text" = "録音できます。 (1秒以内)";
+
+/* Class = "UIButton"; normalTitle = "Play"; ObjectID = "Z4o-wD-zs3"; */
+"Z4o-wD-zs3.normalTitle" = "再生";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "b3r-vB-D9f"; */
+"b3r-vB-D9f.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Stop"; ObjectID = "bnU-ck-HIm"; */
+"bnU-ck-HIm.normalTitle" = "停止";
+
+/* Class = "UIButton"; normalTitle = "Play"; ObjectID = "cOh-zi-IvL"; */
+"cOh-zi-IvL.normalTitle" = "再生";
+
+/* Class = "UIButton"; normalTitle = "Stop Rec"; ObjectID = "dpv-Yo-xkF"; */
+"dpv-Yo-xkF.normalTitle" = "録音停止";
+
+/* Class = "UILabel"; text = "Recording"; ObjectID = "fqN-bB-EG7"; */
+"fqN-bB-EG7.text" = "ループ録音";
+
+/* Class = "UILabel"; text = "Sampling"; ObjectID = "hpe-FM-wuW"; */
+"hpe-FM-wuW.text" = "音源録音";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "k41-7W-ZK4"; */
+"k41-7W-ZK4.normalTitle" = "終了";
+
+/* Class = "UILabel"; text = "for"; ObjectID = "nMa-K5-x1Z"; */
+"nMa-K5-x1Z.text" = "ボタンの色：";
+
+/* Class = "UILabel"; text = "Faster"; ObjectID = "nWk-zV-l7S"; */
+"nWk-zV-l7S.text" = "早く";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "yVo-pY-4Wu"; */
+"yVo-pY-4Wu.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Color"; ObjectID = "yWS-qG-tdG"; */
+"yWS-qG-tdG.text" = "色";
