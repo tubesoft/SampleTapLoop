@@ -49,7 +49,7 @@
 "hpe-FM-wuW.text" = "音源録音";
 
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "k41-7W-ZK4"; */
-"k41-7W-ZK4.normalTitle" = "終了";
+"k41-7W-ZK4.normalTitle" = "完了";
 
 /* Class = "UILabel"; text = "for"; ObjectID = "nMa-K5-x1Z"; */
 "nMa-K5-x1Z.text" = "ボタンの色：";
