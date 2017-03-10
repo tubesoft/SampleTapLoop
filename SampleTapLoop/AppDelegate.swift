@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // 画面ロックしないようにする
+        UIApplication.shared.isIdleTimerDisabled = true
+        
+        // Use Firebase library to configure APIs
+        FIRApp.configure()
+        
+        // Initialize Google Mobile Ads SDK, application IDを設定
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-4143465099360561~3425685539")
         return true
     }
 

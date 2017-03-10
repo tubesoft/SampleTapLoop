@@ -22,6 +22,7 @@ class SamplingViewController: UIViewController {
     @IBOutlet weak var btnPlay: UIButton!
     @IBOutlet weak var btnDone: UIButton!
     @IBOutlet weak var btnRec: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var lblColor: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
@@ -45,8 +46,8 @@ class SamplingViewController: UIViewController {
         do {
             try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
 //            try session.setMode(AVAudioSessionModeDefault)
-            let ioBufferDuration = 128.0 / 44100.0
-            try session.setPreferredIOBufferDuration(ioBufferDuration)
+//            let ioBufferDuration = 128.0 / 44100.0
+//            try session.setPreferredIOBufferDuration(ioBufferDuration)
             try session.setActive(true)
         } catch {
             assertionFailure("AVAudioSession setup error: \(error)")
@@ -56,7 +57,6 @@ class SamplingViewController: UIViewController {
         filePath = URL(fileURLWithPath: documentDir + "/" + txtColor! + ".caf")
         
         audioFileSpare = NSData(contentsOf: filePath!)  // 元のファイルを退避
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +80,6 @@ class SamplingViewController: UIViewController {
             // (この例だとフォーマットに inputNode.outputFormatForBus(0) を指定するのと同じ)
             // tapBlockはメインスレッドで実行されるとは限らないので注意
             let inputNode = engine.inputNode!  // 端末にマイクがあると仮定する
-            
             inputNode.installTap(onBus: 0, bufferSize: 4096, format: nil) { (buffer, when) in
                 do {
                     // audioFileにバッファを書き込む
@@ -92,7 +91,8 @@ class SamplingViewController: UIViewController {
         } catch let error {
             print("AVAudioFile error:", error)
         }
-
+        
+        engine.prepare()
         timer = Timer.scheduledTimer(
             timeInterval: 0.001,
             target: self,
@@ -105,6 +105,7 @@ class SamplingViewController: UIViewController {
         btnDone.isEnabled = false
         btnPlay.isEnabled = false
         btnRec.isEnabled = false
+        btnCancel.isEnabled = false
         isRecorded = true
         labelStatus.text = NSLocalizedString("NowRecording", comment: "")
         do {
@@ -123,11 +124,13 @@ class SamplingViewController: UIViewController {
 //        print(cnt)
         if cnt == 1000 {
             timer.invalidate()
+            engine.pause()
             engine.stop()
             engine.inputNode?.removeTap(onBus: 0)
             btnDone.isEnabled = true
             btnPlay.isEnabled = true
             btnRec.isEnabled = true
+            btnCancel.isEnabled = true
             labelStatus.text = NSLocalizedString("NowReady", comment: "")
         }
     }
@@ -153,7 +156,15 @@ class SamplingViewController: UIViewController {
     
     @IBAction func touchUpCancel(_ sender: Any) {
         if fileManager.fileExists(atPath: (filePath?.path)!) {
-            audioFileSpare.write(to: filePath!, atomically: true)
+            if audioFileSpare != nil {
+                audioFileSpare.write(to: filePath!, atomically: true)
+            } else {
+                do {
+                    try fileManager.removeItem(at: filePath!)
+                } catch let error {
+                    print ("removeItem error", error)
+                }
+            }
         }
         
         let targetViewController:ViewController = self.storyboard!.instantiateViewController( withIdentifier: "main" ) as! ViewController

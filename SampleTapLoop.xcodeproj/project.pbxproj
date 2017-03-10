@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02FCFB94C0B9B580DDBB1CA4 /* Pods_SampleTapLoop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991421BA5920BF1822A177C5 /* Pods_SampleTapLoop.framework */; };
 		A90630991E26EDF8006A9FF8 /* SamplingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */; };
 		A991AA731E6A2F2600E427B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A991AA751E6A2F2600E427B0 /* Localizable.strings */; };
+		A9BD621A1E6B9C060095CF64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9BD62191E6B9C060095CF64 /* GoogleService-Info.plist */; };
 		A9DBEAA91E248A8500AE6EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBEAA81E248A8500AE6EE4 /* AppDelegate.swift */; };
 		A9DBEAAB1E248A8500AE6EE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBEAAA1E248A8500AE6EE4 /* ViewController.swift */; };
 		A9DBEAAE1E248A8500AE6EE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9DBEAAC1E248A8500AE6EE4 /* Main.storyboard */; };
@@ -37,11 +39,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8EE311021587D32ABF859552 /* Pods_SampleTapLoopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleTapLoopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		991421BA5920BF1822A177C5 /* Pods_SampleTapLoop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleTapLoop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SamplingViewController.swift; sourceTree = "<group>"; };
+		A9209C331E6BAC78002E1DBF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		A9209C351E6BAC81002E1DBF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A9209C371E6BAC89002E1DBF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A9209C391E6BAC97002E1DBF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A9209C3B1E6BACA5002E1DBF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A9209C3D1E6BACAF002E1DBF /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A9209C3F1E6BACC9002E1DBF /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		A9209C401E6BACC9002E1DBF /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		A9209C431E6BACE9002E1DBF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A9209C441E6BACE9002E1DBF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A9209C451E6BACE9002E1DBF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A991AA741E6A2F2600E427B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A991AA771E6A336500E427B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A991AA781E6A336500E427B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A991AA7A1E6B3FF700E427B0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		A9BD62191E6B9C060095CF64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9DBEAA51E248A8500AE6EE4 /* SampleTapLoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTapLoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DBEAA81E248A8500AE6EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9DBEAAA1E248A8500AE6EE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +73,9 @@
 		A9DBEACB1E248A8600AE6EE4 /* SampleTapLoopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTapLoopUITests.swift; sourceTree = "<group>"; };
 		A9DBEACD1E248A8600AE6EE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9FC96F51E287454007948CC /* SampleTapLoop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleTapLoop.entitlements; sourceTree = "<group>"; };
+		CC15E14ACC1978107149F497 /* Pods-SampleTapLoop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleTapLoop.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleTapLoop/Pods-SampleTapLoop.release.xcconfig"; sourceTree = "<group>"; };
+		D943E2393A784301BF83BBDA /* Pods_SampleTapLoopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleTapLoopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECA8B0592E5162EC7C9EF348 /* Pods-SampleTapLoop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleTapLoop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleTapLoop/Pods-SampleTapLoop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02FCFB94C0B9B580DDBB1CA4 /* Pods_SampleTapLoop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A59A639156DF2749126ADD77 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECA8B0592E5162EC7C9EF348 /* Pods-SampleTapLoop.debug.xcconfig */,
+				CC15E14ACC1978107149F497 /* Pods-SampleTapLoop.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A9DBEA9C1E248A8500AE6EE4 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +121,7 @@
 				A9DBEACA1E248A8600AE6EE4 /* SampleTapLoopUITests */,
 				A9DBEAA61E248A8500AE6EE4 /* Products */,
 				A9FC96F61E287454007948CC /* Frameworks */,
+				A59A639156DF2749126ADD77 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +148,7 @@
 				A9DBEAB71E248A8500AE6EE4 /* Info.plist */,
 				A991AA751E6A2F2600E427B0 /* Localizable.strings */,
 				A9DBEAAF1E248A8500AE6EE4 /* SampleTapLoop.xcdatamodeld */,
+				A9BD62191E6B9C060095CF64 /* GoogleService-Info.plist */,
 			);
 			path = SampleTapLoop;
 			sourceTree = "<group>";
@@ -143,6 +174,20 @@
 		A9FC96F61E287454007948CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A9209C431E6BACE9002E1DBF /* MessageUI.framework */,
+				A9209C441E6BACE9002E1DBF /* StoreKit.framework */,
+				A9209C451E6BACE9002E1DBF /* SystemConfiguration.framework */,
+				A9209C3F1E6BACC9002E1DBF /* EventKit.framework */,
+				A9209C401E6BACC9002E1DBF /* EventKitUI.framework */,
+				A9209C3D1E6BACAF002E1DBF /* CoreTelephony.framework */,
+				A9209C3B1E6BACA5002E1DBF /* CoreMedia.framework */,
+				A9209C391E6BAC97002E1DBF /* CoreGraphics.framework */,
+				A9209C371E6BAC89002E1DBF /* AVFoundation.framework */,
+				A9209C351E6BAC81002E1DBF /* AudioToolbox.framework */,
+				A9209C331E6BAC78002E1DBF /* AdSupport.framework */,
+				991421BA5920BF1822A177C5 /* Pods_SampleTapLoop.framework */,
+				8EE311021587D32ABF859552 /* Pods_SampleTapLoopTests.framework */,
+				D943E2393A784301BF83BBDA /* Pods_SampleTapLoopUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -154,9 +199,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9DBEAD01E248A8600AE6EE4 /* Build configuration list for PBXNativeTarget "SampleTapLoop" */;
 			buildPhases = (
+				35DF3DBEB31603480A8BE718 /* [CP] Check Pods Manifest.lock */,
 				A9DBEAA11E248A8500AE6EE4 /* Sources */,
 				A9DBEAA21E248A8500AE6EE4 /* Frameworks */,
 				A9DBEAA31E248A8500AE6EE4 /* Resources */,
+				41160C10BAF05A116EB18A5A /* [CP] Embed Pods Frameworks */,
+				5569E92F26988EAA78547B94 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -215,7 +263,7 @@
 				TargetAttributes = {
 					A9DBEAA41E248A8500AE6EE4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3KPPVYM38R;
+						DevelopmentTeam = GTYGR37LG9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InterAppAudio = {
@@ -265,6 +313,7 @@
 			files = (
 				A9DBEAB61E248A8500AE6EE4 /* LaunchScreen.storyboard in Resources */,
 				A991AA731E6A2F2600E427B0 /* Localizable.strings in Resources */,
+				A9BD621A1E6B9C060095CF64 /* GoogleService-Info.plist in Resources */,
 				A9DBEAB31E248A8500AE6EE4 /* Assets.xcassets in Resources */,
 				A9DBEAAE1E248A8500AE6EE4 /* Main.storyboard in Resources */,
 			);
@@ -285,6 +334,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		35DF3DBEB31603480A8BE718 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		41160C10BAF05A116EB18A5A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SampleTapLoop/Pods-SampleTapLoop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5569E92F26988EAA78547B94 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SampleTapLoop/Pods-SampleTapLoop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A9DBEAA11E248A8500AE6EE4 /* Sources */ = {
@@ -364,6 +461,7 @@
 		A9DBEACE1E248A8600AE6EE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -386,6 +484,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = GTYGR37LG9;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -415,6 +514,7 @@
 		A9DBEACF1E248A8600AE6EE4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -437,6 +537,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = GTYGR37LG9;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -449,6 +550,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,13 +560,21 @@
 		};
 		A9DBEAD11E248A8600AE6EE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECA8B0592E5162EC7C9EF348 /* Pods-SampleTapLoop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3KPPVYM38R;
+				DEVELOPMENT_TEAM = GTYGR37LG9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SampleTapLoop",
+				);
 				INFOPLIST_FILE = SampleTapLoop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tubesoft.SampleTapLoop;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tubesoft.SampleTapLoop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -472,13 +582,21 @@
 		};
 		A9DBEAD21E248A8600AE6EE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC15E14ACC1978107149F497 /* Pods-SampleTapLoop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3KPPVYM38R;
+				DEVELOPMENT_TEAM = GTYGR37LG9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SampleTapLoop",
+				);
 				INFOPLIST_FILE = SampleTapLoop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tubesoft.SampleTapLoop;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tubesoft.SampleTapLoop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

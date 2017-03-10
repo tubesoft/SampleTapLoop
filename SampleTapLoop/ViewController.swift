@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import GoogleMobileAds
 
 class ViewController: UIViewController {
     
@@ -54,9 +55,59 @@ class ViewController: UIViewController {
     var pathPunch: URL!
     let colors: [String] = ["Blue", "Green", "Orange", "Pink", "Purple"]
     var audioExists: [Bool] = [false, false, false, false, false]
+    var punchExist = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let session = AVAudioSession.sharedInstance()
+//        do {
+//            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
+//            try session.setActive(true)
+//        } catch {
+//            assertionFailure("AVAudioSession setup error: \(error)")
+//        }
+        
+        initNodes()
+        
+        btnStopRecording.isEnabled = false
+        switchSampling.isOn = false
+        switchRecording.isOn = false
+        btnStop.isEnabled = false
+        if !audioExists[0] && !audioExists[1] &&
+            !audioExists[2] && !audioExists[3] &&
+            !audioExists[4] {
+            switchRecording.isEnabled = false
+        }
+        if !punchExist {
+            btnPlay.isEnabled = false
+        } else {
+            cntRecording = arraySoundTiming.count - 1
+        }
+        
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(self.handleInterruption),
+                           name: NSNotification.Name.AVAudioSessionInterruption, object: nil)
+        center.addObserver(self, selector: #selector(self.audioSessionRouteChanged),
+                           name: NSNotification.Name.AVAudioSessionRouteChange, object: nil)
+
+        
+        // AdMob広告
+        var admobView = GADBannerView()
+        admobView = GADBannerView(adSize:kGADAdSizeBanner)
+        admobView.frame.origin = CGPoint(
+            x:(self.view.frame.size.width - admobView.frame.width)/2,
+            y:self.view.frame.size.height - admobView.frame.height)
+        admobView.frame.size = CGSize(width:admobView.frame.width, height:admobView.frame.height)
+
+        admobView.adUnitID = "ca-app-pub-4143465099360561/4902418739"
+        admobView.rootViewController = self
+        admobView.load(GADRequest())
+        
+        self.view.addSubview(admobView)
+        
+    }
+    
+    func initNodes() {
         let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask) as [URL]
         let dirURL = urls[0]
         for color in colors {
@@ -65,7 +116,9 @@ class ViewController: UIViewController {
         }
         pathPunch = dirURL.appendingPathComponent("punchSheet.dat") as URL
         
-        if  fileManager.fileExists(atPath: pathPunch.path){
+        punchExist = fileManager.fileExists(atPath: pathPunch.path)
+        
+        if  punchExist {
             arraySoundTiming = NSKeyedUnarchiver.unarchiveObject(withFile: pathPunch.path) as! NSMutableArray
         }
         
@@ -104,25 +157,19 @@ class ViewController: UIViewController {
         } catch let error {
             print("AVAudioFile error", error)
         }
+        
+        engine.mainMixerNode.outputVolume = 1
+        
         if audioExists[0] || audioExists[1] ||
             audioExists[2] || audioExists[3] ||
             audioExists[4] {
-                do {
-                    // エンジンを開始
-                    try engine.start()
-                } catch let error {
-                    print("engine.start() error:", error)
-                }
-        }
-        
-        btnStopRecording.isEnabled = false
-        switchSampling.isOn = false
-        switchRecording.isOn = false
-        btnStop.isEnabled = false
-        if !fileManager.fileExists(atPath: pathPunch.path) {
-            btnPlay.isEnabled = false
-        } else {
-            cntRecording = arraySoundTiming.count - 1
+            engine.prepare()
+            do {
+                // エンジンを開始
+                try engine.start()
+            } catch let error {
+                print("engine.start() error:", error)
+            }
         }
     }
     
@@ -130,11 +177,21 @@ class ViewController: UIViewController {
         if switchSampling.isOn && switchRecording.isOn {
             switchRecording.isOn = false
         }
+        if switchSampling.isOn || !punchExist {
+            btnPlay.isEnabled = false
+        } else {
+            btnPlay.isEnabled = true
+        }
     }
     
     @IBAction func valueChengedSwitchRecording(_ sender: Any) {
         if switchSampling.isOn && switchRecording.isOn {
             switchSampling.isOn = false
+        }
+        if switchRecording.isOn || !punchExist {
+            btnPlay.isEnabled = false
+        } else {
+            btnPlay.isEnabled = true
         }
     }
     
@@ -148,7 +205,6 @@ class ViewController: UIViewController {
         //タイマーオフ
         timerRecording.invalidate()
         btnPlay.isEnabled = true
-        btnStop.isEnabled = true
         switchRecording.isEnabled = true
         switchRecording.isOn = false
         switchSampling.isEnabled = true
@@ -185,7 +241,6 @@ class ViewController: UIViewController {
         if cntRecording >= 5000 { //10秒経ったら強制終了
             timerRecording.invalidate()
             btnPlay.isEnabled = true
-            btnStop.isEnabled = true
             switchRecording.isEnabled = true
             switchSampling.isEnabled = true
             btnStopRecording.isEnabled = false
@@ -288,6 +343,7 @@ class ViewController: UIViewController {
     }
     
     func moveToSampling(colorStr: String) {
+        engine.pause()
         engine.stop()
         let targetViewController:SamplingViewController = self.storyboard!.instantiateViewController( withIdentifier: "sampling" ) as! SamplingViewController
         targetViewController.valueAccessor = colorStr
@@ -419,6 +475,64 @@ class ViewController: UIViewController {
         }
     }
     
+    // 電話が来たとき
+    func handleInterruption(_ notification: Notification) {
+        if !btnPlay.isEnabled {
+            timerPlaying.invalidate()
+            btnPlay.isEnabled = true
+            btnStop.isEnabled = false
+            switchRecording.isEnabled = true
+            switchSampling.isEnabled = true
+            cntPlaying = 1
+        }
+    }
+    
+    // ヘッドフォン抜き差ししたとき
+    func audioSessionRouteChanged(_ notification: Notification) {
+        if audioExists[0] {
+            engine.disconnectNodeOutput(playerNodeBlue)
+        }
+        if audioExists[1] {
+            engine.disconnectNodeOutput(playerNodeGreen)
+        }
+        if audioExists[2] {
+            engine.disconnectNodeOutput(playerNodeOrange)
+        }
+        if audioExists[3] {
+            engine.disconnectNodeOutput(playerNodePink)
+        }
+        if audioExists[4] {
+            engine.disconnectNodeOutput(playerNodePurple)
+        }
+        engine.pause()
+        engine.stop()
+        if audioExists[0] {
+            engine.connect(playerNodeBlue, to: engine.mainMixerNode, format: audioFileBlue.processingFormat)
+        }
+        if audioExists[1] {
+            engine.connect(playerNodeGreen, to: engine.mainMixerNode, format: audioFileGreen.processingFormat)
+        }
+        if audioExists[2] {
+            engine.connect(playerNodeOrange, to: engine.mainMixerNode, format: audioFileOrange.processingFormat)
+        }
+        if audioExists[3] {
+            engine.connect(playerNodePink, to: engine.mainMixerNode, format: audioFilePink.processingFormat)
+        }
+        if audioExists[4] {
+            engine.connect(playerNodePurple, to: engine.mainMixerNode, format: audioFilePurple.processingFormat)
+        }
+        engine.prepare()
+        if audioExists[0] || audioExists[1] ||
+            audioExists[2] || audioExists[3] ||
+            audioExists[4] {
+            do {
+                // エンジンを開始
+                try engine.start()
+            } catch let error {
+                print("engine.start() error:", error)
+            }
+        }
+    }
     
     @IBAction func touchUpBlue(_ sender: Any) {
     }
