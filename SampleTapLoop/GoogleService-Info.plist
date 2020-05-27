@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
 	<string>131468765087-kdvg3ge9pn599iknih4k47r4u7feqlne.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
@@ -15,19 +11,19 @@
 	<key>GCM_SENDER_ID</key>
 	<string>131468765087</string>
 	<key>PLIST_VERSION</key>
-	<string>1.0</string>
+	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>tubesoft.SampleTapLoop</string>
+	<string>com.tubesoft.SampleTapLoop</string>
 	<key>PROJECT_ID</key>
 	<string>sampletaploop</string>
 	<key>STORAGE_BUCKET</key>
 	<string>sampletaploop.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
 	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
@@ -36,5 +32,7 @@
 	<string>1:131468765087:ios:4f7a28da2c5638dd</string>
 	<key>DATABASE_URL</key>
 	<string>https://sampletaploop.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-4143465099360561~3425685539</string>
 </dict>
 </plist>
