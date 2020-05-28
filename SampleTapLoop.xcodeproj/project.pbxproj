@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02FCFB94C0B9B580DDBB1CA4 /* Pods_SampleTapLoop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991421BA5920BF1822A177C5 /* Pods_SampleTapLoop.framework */; };
+		A903D907247F3B9E00718EB9 /* PrivacyPolicy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A903D906247F3B9E00718EB9 /* PrivacyPolicy.pdf */; };
 		A90630991E26EDF8006A9FF8 /* SamplingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */; };
 		A935F0541E863D4C003E6F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A935F0531E863D4C003E6F34 /* Assets.xcassets */; };
 		A9599B211E8856BC0089C65B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9599B1F1E8856BC0089C65B /* Main_iPad.storyboard */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		8EE311021587D32ABF859552 /* Pods_SampleTapLoopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleTapLoopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		991421BA5920BF1822A177C5 /* Pods_SampleTapLoop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleTapLoop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A903D906247F3B9E00718EB9 /* PrivacyPolicy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PrivacyPolicy.pdf; sourceTree = "<group>"; };
 		A90630981E26EDF8006A9FF8 /* SamplingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SamplingViewController.swift; sourceTree = "<group>"; };
 		A9209C331E6BAC78002E1DBF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		A9209C371E6BAC89002E1DBF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -155,6 +157,7 @@
 				A991AA751E6A2F2600E427B0 /* Localizable.strings */,
 				A9DBEAAF1E248A8500AE6EE4 /* SampleTapLoop.xcdatamodeld */,
 				A98AB91B247DBF0800A155D0 /* GoogleService-Info.plist */,
+				A903D906247F3B9E00718EB9 /* PrivacyPolicy.pdf */,
 			);
 			path = SampleTapLoop;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			files = (
 				A9DBEAB61E248A8500AE6EE4 /* LaunchScreen.storyboard in Resources */,
 				A991AA731E6A2F2600E427B0 /* Localizable.strings in Resources */,
+				A903D907247F3B9E00718EB9 /* PrivacyPolicy.pdf in Resources */,
 				A9599B211E8856BC0089C65B /* Main_iPad.storyboard in Resources */,
 				A9DBEAAE1E248A8500AE6EE4 /* Main.storyboard in Resources */,
 				A935F0541E863D4C003E6F34 /* Assets.xcassets in Resources */,
